@@ -1,0 +1,231 @@
+---
+title: "Lesson 1.2"
+subtitle: "The Transformation Technique"
+format: pdf
+editor: visual
+font: 12px
+---
+
+\setcounter{page}{5}
+
+## Introduction
+
+The transformation method for finding the probability distribution of a function of random variables is an offshoot of the distribution function method. Through the distribution function approach, we can arrive at a simple method of writing down the density function of $U = g(Y)$, provided that $g(y)$ is either decreasing or increasing and one-to-one.
+
+Suppose $Y$ is a continuous random variable with CDF $F_Y(y)$ and support $R_Y$, and let $U = g(Y)$, where $g: R_Y \rightarrow \mathbb{R}$ is a continuous, **one-to-one** function defined over $R_Y$. Examples of scuh functions include continuous (strictly) **increasing/decreasing** functions. Recall from calculus that if $g$ is one-to-one, it has a unique inverse $g^{-1}$. Also, recall that if $g$ is increasing (decreasing), then so is $g^{-1}$.
+
+Suppose that $g(y)$ is an increasing function of $y$ defined over $R_Y$. Then it follows that $u = g(y) \iff g^{-1}(u) = y$ and
+
+$$
+\begin{aligned}
+F_U(u) &= P[g(Y) \leq u ] \\
+&= P[Y \leq g^{-1}(u)] \\
+&= F_Y[g^{-1}(u)]
+\end{aligned}
+$$
+
+Differentiating $F_U(u)$ with respect to $u$, we get
+
+$$
+\begin{aligned}
+f_U(u) &= \frac{d}{du} F_U(u) \\
+&= \frac{d}{du} F_Y[g^{-1}(u)] \\
+&= f_Y[g^{-1}(u)] \times \frac{d}{du} [g^{-1}(u)],\,\, \text{by Chain Rule}
+\end{aligned}
+$$
+
+Note that if $g$ is increasing so is $g^{-1}$, thus, $\frac{d}{du} [g^{-1}(u)] > 0$.
+
+Meanwhile, if $g(y)$ is strictly decreasing, then $F_U(u) = 1 - F_Y[g^{-1}(u)]$ and $\frac{d}{du} [g^{-1}(u)] < 0$, which gives
+
+$$
+\begin{aligned}
+f_U(U) &= \frac{d}{du} F_U(u) \\
+&= \frac{d}{du} \{1 - F_Y[g^{-1}(u)]\} \\
+&= -f_Y[g^{-1}(u)] \times \frac{d}{du} [g^{-1}(u)]
+\end{aligned}
+$$
+
+Combining both cases, we have shown taht the PDF of $U$, where nonzero, is given by
+
+$$
+f_U(u) = f_Y[g^{-1}(u)] \times \Big|\frac{d}{du} [g^{-1}(u)] \Big| \tag{1}
+$$
+
+## The Transformation Technique
+
+The steps to be followed in using the transformation method are:
+
+1.  Verify that the transformation $u = g(y)$ is continuous and one-to-one over $R_Y$.
+
+2.  Find the support of $U$.
+
+3.  Find the inverse transformation $y = g^{-1}(u)$ and its derivative with respect to $u$.
+
+4.  Use (1) to obtain $f_U(u)$.
+
+### Example 1.2.1
+
+Let $Y$ have the probability density function given by
+
+$$
+f_Y(y) = \begin{cases}
+2y,\, 0 \leq y \leq 1 \\
+0,\, \text{elsewhere}
+\end{cases}
+$$
+
+Find the distribution of $U = 3Y - 1$.
+
+**SOLUTION**
+
+It is clear that $U = 3Y - 1$ is continuous (increasing) and one-to-one in $R_Y = \{y: 0 \leq y \leq 1\}$. If $y \in (0,1)$, then $u \in (-1,2)$, in other words, $R_U = \{u: -1 \leq u \leq 2 \}$.
+
+If $u = 3y - 1$, then $y = g^{-1}(u) = \frac{u+1}{3}$ and
+
+$$
+\begin{aligned}
+\frac{d}{du} g^{-1}(u) &= \frac{d}{du}\left[\frac{u+1}{3}\right] \\
+&= \frac{1}{3}
+\end{aligned}
+$$
+
+Therefore, usisng (1) the PDF of $U$ is given by
+
+$$
+\begin{aligned}
+f_U(u) &= f_Y[g^{-1}(u)] \times \Big|\frac{d}{du} [g^{-1}(u)] \Big| \\
+&= 2\times\frac{u+1}{3} \times \Big|\frac{1}{3}\Big| \\
+&= \frac{2}{9} (u+1)
+\end{aligned}
+$$
+
+That is,
+
+$$
+f_U(u) = \begin{cases}
+\frac{2}{9} (u + 1), \; -1 \leq u \leq 2 \\
+0,\, \text{elsewhere}
+\end{cases}
+$$
+
+### Example 1.2.2
+
+Suppose that $Y$ has a $Beta(6,2)$ distribution. Find the distribution of $U = 1- Y$.
+
+**SOLUTION**
+
+Since $Y \sim Beta(6,2)$, then
+
+$$
+f_Y(y) = \begin{cases}
+42y^5(1-y),\, 0< y < 1\\
+0,\, \text{elsewhere}
+\end{cases}
+$$
+
+It is clear that $u = g(y) = 1-y$ is continuous (decreasing) and one-to-one over $R_Y = \{y: 0 <y < 1 \}$. In addition, the support of $U$ is given by $R_U = \{u: 0 < u < 1 \}$.
+
+The inverse transformation is
+
+$$
+g(y) = u = 1-y \iff  y = g^{-1}(u) = 1 - u
+$$
+
+and
+
+$$
+\begin{aligned}
+\frac{d}{du} g^{-1}(u) &= \frac{d}{du}\left[ 1- u\right] \\
+&= -1
+\end{aligned}
+$$
+
+Thus, for $0 < u < 1$,
+
+$$
+\begin{aligned}
+f_U(u) &= f_Y[g^{-1}(u)] \times \Big|\frac{d}{du} [g^{-1}(u)] \Big| \\
+&= 42\times(1-u)^5 [1-(1-u)] \times |-1| \\
+&= 42u(1-u)^5
+\end{aligned}
+$$
+
+Therefore,
+
+$$
+f_Y(y) = \begin{cases}
+42u(1-u)^5,\, 0< y < 1\\
+0,\, \text{elsewhere}
+\end{cases}
+$$
+
+which means that $U \sim Beta(2,6)$.
+
+\
+
+QUESTION: What happens if $u=g(y)$ is not a one-to-one transformation? In this case we can still use the method of transformation but we have to *"break up"* the transformation $g:R_Y \rightarrow R_U$ into disjoint regions where $g$ is one-to-one.
+
+Suppose $Y$ is a continuous random variable with PDF $f_Y(y)$ and that $U = g(Y)$, not necessarily a one-to-one (but continuous) function of $y$ over $R_Y$. Furthermore, suppose that we can partition $R_Y$ into a finite collection of sets, say $B_1, B_2, \ldots, B_k$, where $P(Y_i \in B_i) >0$ for all $i$, and $f_Y(y_)$ is continuous on each $B_i$. Furthermore, suppose that there exists functions $g_1(y), g_2(y),\ldots, g_k(y)$ such that $g_i(y)$ is defined on $B_i, i = 1,2,\ldots,k$ and the $g_i(y)$ satisfy
+
+(a) $g(y) = g_i(y),\, \forall y \in B_i$
+(b) $g_i(y)$ is monotone on $B_i$, so that $g_i^{-1}(.)$ exists uniquely on $B_i$.
+
+Then, the PDf of $U$ is given by
+
+$$
+f_U(u) = \begin{cases}
+\sum_{i=1}^k f_Y[g_i^{-1}(u)]\Big|\frac{d}{du} [g_i^{-1}(u)]\Big|, u \in R_U \\
+0, \,\text{elsewhere}
+\end{cases}
+$$
+
+\newpage
+
+### Example 1.2.3
+
+Suppose that $Y \sim N(0,1)$, that is $Y$ has a standard normal distribution. Find the distribution of $U = Y^2$.
+
+**SOLUTION**
+
+The PDF of $Y$ is
+
+$$
+f_Y(y) = \begin{cases}
+\frac{1}{\sqrt{2\pi}}e^{-y^2/2},\, -\infty < y < \infty \\
+0, \, \text{elsewhere}
+\end{cases}
+$$ The transformation $U = g(Y) = Y^2$ is not one-to-one over $R_Y = \{y: -\infty < y < \infty \}$, but is one-to-one on $B_1 = (-\infty, 0)$ and $B_2 = [0,\infty)$. Also notice that $g(y)$ is increasing on $B_1$ and decreasing on $B_2$.
+
+Clearly, $u = g(y) = y^2 >0$, thus, the support of $U$ is $R_U=\{u: u >0\}$.
+
+On $B_1$, $g_1(y) = y^2 = u$, hence, the inverse transformation is $g_1^{-1}(u) = y = -\sqrt{u}$. While on $B_2$, $g_2(y) = y^2 = u$, hence, the inverse transformation is $g_2^{-1}(u) = y = \sqrt{u}$.
+
+Also notice that on both sets $B_1$ and $B_2$,
+
+$$
+\Big| \frac{d}{du} g_i^{-1}(u) \Big| = \frac{1}{2\sqrt{u}}
+$$
+
+For $u>0$, the PDF of $U$ is given by
+
+$$
+\begin{aligned}
+f_U(u) &= f_Y[g_1^{-1}(u)]\Big| \frac{d}{du} g_1^{-1}(u) \Big| + f_Y[g_2^{-1}(u)]\Big| \frac{d}{du} g_2^{-1}(u) \Big| \\
+&= f_Y[-\sqrt{u}] \times \frac{1}{2\sqrt{u}} + f_Y[\sqrt{u}] \times \frac{1}{2\sqrt{u}} \\
+&= \frac{1}{\sqrt{2\pi}}e^{-(-\sqrt{u})^2/2} \times \frac{1}{2\sqrt{u}} + \frac{1}{\sqrt{2\pi}}e^{-(\sqrt{u})^2/2} \times \frac{1}{2\sqrt{u}} \\
+&= \frac{2}{\sqrt{2\pi}} e^{-u/2} \times \frac{1}{2\sqrt{u}} \\
+&= \frac{1}{\sqrt{2\pi}}u^{\frac{1}{2} -1}e^{-u^2/2} \\
+&= \frac{1}{\Gamma(1/2)2^{1/2}}u^{\frac{1}{2} -1}e^{-u^2/2}, \text{since}\, \Gamma(1/2) = \sqrt{2\pi}
+\end{aligned}
+$$
+
+This density resembles the density of $Gamma(1/2,2)$ which is the Chi-square distribution with 1 degree of freedom. Therefore, $U \sim \chi^2 (1)$.
+
+\
+
+### Example 1.2.4
+
+The waiting time $Y$ until delivery of a new component for an industrial operation is uniformly distributed over the interval from 1 to 5 days. The cost of this delay is given by $U = 2Y^2 + 3$. Find the probability density function for $U$.
+
+**SOLUTION** \[Left as classroom exercise!\]
